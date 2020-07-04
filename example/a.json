@@ -1,0 +1,9 @@
+{
+  "jsonBody" : {
+    "benky" : {
+      "jede" : "jen"
+    }
+  },
+  "path" : "/benky/{id}/jede",
+  "status" : 200
+}
