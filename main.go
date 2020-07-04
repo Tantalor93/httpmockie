@@ -4,19 +4,12 @@ import (
 	"encoding/json"
 	"flag"
 	"github.com/gorilla/mux"
-	"go-http-mock/log"
-	"io/ioutil"
+	"go-http-mock/internal/log"
+	"go-http-mock/internal/mockspec"
+
 	"net/http"
-	"os"
-	"path/filepath"
 	"strconv"
 )
-
-type MockSpecification struct {
-	JsonBody map[string]interface{} `json:"jsonBody"`
-	Path     string                 `json:"path"`
-	Status   int                    `json:"status"`
-}
 
 var router = mux.NewRouter()
 
@@ -25,8 +18,11 @@ func main() {
 
 	port, dir := parseFlags()
 
-	if err := filepath.Walk(*dir, walkDir); err != nil {
-		panic(err)
+	specs := mockspec.CollectFromDirectory(*dir)
+
+	for _, spec := range specs {
+		log.Logger.Infof("Registering handler for path '%s'", spec.Path)
+		createHandler(spec)
 	}
 
 	itoa := strconv.Itoa(*port)
@@ -49,43 +45,16 @@ func parseFlags() (*int, *string) {
 	return port, dir
 }
 
-func walkDir(path string, info os.FileInfo, err error) error {
-	if !info.IsDir() {
-		log.Logger.Infof("Reading mock specification '%s'", path)
-
-		file, e := os.Open(path)
-		if e != nil {
-			log.Logger.Errorf("Error opening while '%s'", path)
-			return nil
-		}
-		read, err := ioutil.ReadAll(file)
-		if err != nil {
-			log.Logger.Errorf("Error while reading file '%s'", path)
-			return nil
-		}
-
-		var mock MockSpecification
-		e = json.Unmarshal(read, &mock)
-		if e != nil {
-			log.Logger.Errorf("Error while parsing mock specification in file '%s'", path)
-			return nil
-		}
-		if len(mock.Path) > 0 {
-			log.Logger.Infof("Registering handler for path '%s'", mock.Path)
-			createHandler(mock)
-		}
-		return nil
-	}
-	return nil
-}
-
-func createHandler(mock MockSpecification) *mux.Route {
+func createHandler(mock mockspec.MockSpecification) *mux.Route {
 	return router.HandleFunc(mock.Path, func(writer http.ResponseWriter, request *http.Request) {
 		if mock.Status != 0 {
 			writer.WriteHeader(mock.Status)
 		}
 		if mock.JsonBody != nil {
 			json.NewEncoder(writer).Encode(mock.JsonBody)
+		}
+		if mock.Body != nil {
+			writer.Write([]byte(*mock.Body))
 		}
 	})
 }
