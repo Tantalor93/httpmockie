@@ -6,7 +6,6 @@ export GO111MODULE = on
 prepare:
 	@echo "Downloading tools"
 	go get -u github.com/jstemmer/go-junit-report
-	go get -u github.com/swaggo/swag/cmd/swag
 	go get golang.org/x/lint/golint
 
 check: prepare
