@@ -16,6 +16,7 @@ func main() {
 	http.HandleFunc("/mock", func(writer http.ResponseWriter, request *http.Request) {
 		rand := rand.Intn(50)
 		time.Sleep(time.Duration(rand) * time.Millisecond)
+		writer.Header().Set("Content-Type", "application/json")
 		writer.WriteHeader(http.StatusOK)
 		json.NewEncoder(writer).Encode(response)
 	})
