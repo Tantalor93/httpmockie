@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"math/rand"
 	"net/http"
 	"time"
 )
@@ -13,7 +14,8 @@ type SomeResponse struct {
 func main() {
 	response := SomeResponse{Msg: "Benky jede"}
 	http.HandleFunc("/mock", func(writer http.ResponseWriter, request *http.Request) {
-		time.Sleep(10 * time.Millisecond)
+		rand := rand.Intn(50)
+		time.Sleep(time.Duration(rand) * time.Millisecond)
 		writer.WriteHeader(http.StatusOK)
 		json.NewEncoder(writer).Encode(response)
 	})
