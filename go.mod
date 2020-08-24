@@ -6,7 +6,6 @@ require (
 	cloud.google.com/go/bigquery v1.9.0 // indirect
 	cloud.google.com/go/storage v1.10.0 // indirect
 	github.com/cncf/udpa/go v0.0.0-20200629203442-efcf912fb354 // indirect
-	github.com/cpuguy83/go-md2man/v2 v2.0.0 // indirect
 	github.com/creack/pty v1.1.11 // indirect
 	github.com/envoyproxy/go-control-plane v0.9.5 // indirect
 	github.com/envoyproxy/protoc-gen-validate v0.4.0 // indirect
@@ -29,6 +28,7 @@ require (
 	github.com/prometheus/client_model v0.2.0 // indirect
 	github.com/rogpeppe/go-internal v1.6.0 // indirect
 	github.com/spf13/afero v1.3.1 // indirect
+	github.com/spf13/cobra v1.0.0
 	github.com/stretchr/testify v1.6.1 // indirect
 	github.com/swaggo/swag v1.6.7 // indirect
 	github.com/urfave/cli/v2 v2.2.0 // indirect
