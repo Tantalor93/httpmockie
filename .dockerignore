@@ -1,0 +1,13 @@
+.idea/
+**/*.iml
+
+.git/
+.gitignore
+
+helm/
+report/
+go-http-mock
+bin/
+docs/
+example/
+README.md

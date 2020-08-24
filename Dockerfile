@@ -1,5 +1,5 @@
 # Builder image
-FROM golang:1.12 AS builder
+FROM golang:1.14 AS builder
 
 RUN mkdir -p /go-http-mock
 WORKDIR /go-http-mock
