@@ -1,8 +1,9 @@
 package main
 
 import (
-	"github.com/gorilla/mux"
 	"go-http-mock/cmd"
+
+	"github.com/gorilla/mux"
 )
 
 var router = mux.NewRouter()

@@ -1,6 +1,6 @@
 ## GO HTTP MOCK
-simple standalone HTTP server able to provide mocked responses defined by 
-mock specification JSON files
+simple standalone mock HTTP server able to provide mocked responses defined by 
+mock specifications similar to [Wiremock JSON API](https://wiremock.org/docs/stubbing/)
 
 example of usage
 ```

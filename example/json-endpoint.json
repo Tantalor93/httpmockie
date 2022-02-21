@@ -1,0 +1,8 @@
+{
+  "jsonBody" : {
+    "message" : "some message",
+    "code" : "OK"
+  },
+  "path" : "/example.json",
+  "status" : 200
+}
