@@ -1,12 +1,8 @@
 package main
 
 import (
-	"go-http-mock/cmd"
-
-	"github.com/gorilla/mux"
+	"github.com/tantalor93/go-http-mock/cmd"
 )
-
-var router = mux.NewRouter()
 
 func main() {
 	cmd.Execute()

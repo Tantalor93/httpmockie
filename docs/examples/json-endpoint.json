@@ -1,0 +1,13 @@
+{
+  "jsonBody": {
+    "message": "some message",
+    "code": "OK"
+  },
+  "headers": {
+    "content-type": [
+      "application/json"
+    ]
+  },
+  "path": "/example.json",
+  "status": 200
+}

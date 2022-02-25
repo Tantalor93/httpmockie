@@ -1,6 +1,6 @@
-module go-http-mock
+module github.com/tantalor93/go-http-mock
 
-go 1.12
+go 1.14
 
 require (
 	github.com/gorilla/mux v1.7.4

@@ -6,10 +6,9 @@ import (
 	"net/http"
 	"strconv"
 
-	"go-http-mock/internal/mockspec"
-
 	"github.com/gorilla/mux"
 	"github.com/spf13/cobra"
+	"github.com/tantalor93/go-http-mock/internal/mockspec"
 )
 
 var router = mux.NewRouter()
@@ -19,6 +18,7 @@ var (
 	dir  *string
 )
 
+// RootCmd root of command
 var RootCmd = cobra.Command{
 	Use: "go-http-mock",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -33,8 +33,9 @@ var RootCmd = cobra.Command{
 			createHandler(spec)
 		}
 
-		itoa := strconv.Itoa(*port)
-		if err := http.ListenAndServe(":"+itoa, router); err != nil {
+		addr := ":" + strconv.Itoa(*port)
+		fmt.Printf("Starting server on address %s\n", addr)
+		if err := http.ListenAndServe(addr, router); err != nil {
 			return err
 		}
 
@@ -44,7 +45,7 @@ var RootCmd = cobra.Command{
 
 func init() {
 	port = RootCmd.PersistentFlags().Int("port", 8081, "port to run mock server on")
-	dir = RootCmd.PersistentFlags().String("dir", ".", "directory with mock specification")
+	dir = RootCmd.PersistentFlags().String("dir", ".", "directory with mock specifications")
 }
 
 func createHandler(mock mockspec.MockSpecification) *mux.Route {
@@ -59,8 +60,11 @@ func createHandler(mock mockspec.MockSpecification) *mux.Route {
 		if mock.Status != 0 {
 			writer.WriteHeader(mock.Status)
 		}
-		if mock.JsonBody != nil {
-			json.NewEncoder(writer).Encode(mock.JsonBody)
+		if mock.JSONBody != nil {
+			json.NewEncoder(writer).Encode(mock.JSONBody)
+		}
+		if mock.Base64Body != nil {
+			writer.Write(mock.Base64Body)
 		}
 		if mock.Body != nil {
 			writer.Write([]byte(*mock.Body))
@@ -68,6 +72,7 @@ func createHandler(mock mockspec.MockSpecification) *mux.Route {
 	})
 }
 
-func Execute() {
-	RootCmd.Execute()
+// Execute executes root command
+func Execute() error {
+	return RootCmd.Execute()
 }
