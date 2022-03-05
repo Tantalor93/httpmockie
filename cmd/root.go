@@ -13,11 +13,11 @@ import (
 
 var router = mux.NewRouter()
 
-const(
-	portArgumentName = "port"
+const (
+	portArgumentName      = "port"
 	portArgumentShortName = "p"
 
-	dirArgumentName = "dir"
+	dirArgumentName      = "dir"
 	dirArgumentShortName = "d"
 )
 
@@ -53,7 +53,7 @@ var RootCmd = cobra.Command{
 
 func init() {
 	port = RootCmd.PersistentFlags().IntP(portArgumentName, portArgumentShortName, 8081, "port to run mock server on")
-	dir = RootCmd.PersistentFlags().StringP(dirArgumentName,dirArgumentShortName, ".", "directory with mock specifications")
+	dir = RootCmd.PersistentFlags().StringP(dirArgumentName, dirArgumentShortName, ".", "directory with mock specifications")
 	if err := RootCmd.MarkPersistentFlagRequired(dirArgumentName); err != nil {
 		panic(err)
 	}
