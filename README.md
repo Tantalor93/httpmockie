@@ -2,6 +2,13 @@
 simple standalone high-performance mock HTTP server implemented in GO, which is able to provide mocked responses defined by 
 mock specifications similar to [Wiremock JSON API](https://wiremock.org/docs/stubbing/).
 
+### Installation
+`go-http-mock` can be installed using GO tooling
+
+```
+go install github.com/tantalor93/go-http-mock@latest
+```
+
 ### Usage
 ```
 Usage:
