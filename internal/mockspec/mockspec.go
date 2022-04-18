@@ -11,7 +11,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-// MockSpecification specification of mock
+// MockSpecification specification of mock.
 type MockSpecification struct {
 	Body       *string                `json:"body"`
 	JSONBody   map[string]interface{} `json:"jsonBody"`
@@ -21,7 +21,7 @@ type MockSpecification struct {
 	Headers    http.Header            `json:"headers"`
 }
 
-// CollectFromDirectory collect specifications from the specified directory
+// CollectFromDirectory collect specifications from the specified directory.
 func CollectFromDirectory(dir string) ([]MockSpecification, error) {
 	var specs []MockSpecification
 	if err := filepath.Walk(dir, createDirWalker(&specs)); err != nil {

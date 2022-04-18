@@ -26,7 +26,7 @@ var (
 	dir  *string
 )
 
-// RootCmd root of command
+// RootCmd root of command.
 var RootCmd = cobra.Command{
 	Use: "go-http-mock",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -83,7 +83,7 @@ func createHandler(mock mockspec.MockSpecification) *mux.Route {
 	})
 }
 
-// Execute executes root command
+// Execute executes root command.
 func Execute() error {
 	return RootCmd.Execute()
 }
