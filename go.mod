@@ -1,4 +1,4 @@
-module github.com/tantalor93/go-http-mock
+module github.com/tantalor93/httpmockie
 
 go 1.17
 
