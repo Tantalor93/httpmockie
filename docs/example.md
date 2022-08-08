@@ -1,8 +1,8 @@
 # Examples
-`go-http-mock` is a simple CLI tool for fast setup of mock HTTP servers
+`httpmockie` is a simple CLI tool for fast setup of mock HTTP servers
 
 For running the tool you have to specify mock specifications (format described in [specification section](specification.md))
-and point the tool to a directory containing those specs (`--dir` flag). `go-http-mock` will then expose endpoints on configurable
+and point the tool to a directory containing those specs (`--dir` flag). `httpmockie` will then expose endpoints on configurable
 port (flag `--port`)
 
 Running this example:
