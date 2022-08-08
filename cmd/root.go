@@ -8,7 +8,7 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/spf13/cobra"
-	"github.com/tantalor93/go-http-mock/internal/mockspec"
+	"github.com/tantalor93/httpmockie/internal/mockspec"
 )
 
 var router = mux.NewRouter()
@@ -28,7 +28,7 @@ var (
 
 // RootCmd root of command.
 var RootCmd = cobra.Command{
-	Use: "go-http-mock",
+	Use: "httpmockie",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		specs, err := mockspec.CollectFromDirectory(*dir)
 		if err != nil {
