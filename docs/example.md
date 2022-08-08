@@ -7,7 +7,7 @@ port (flag `--port`)
 
 Running this example:
 ```
-go-http-mock --port 8081 --dir "docs/examples"
+httpmockie --port 8081 --dir "docs/examples"
 ```
 Will expose three endpoints
 ```
