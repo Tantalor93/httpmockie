@@ -1,6 +1,6 @@
-[![Go Report Card](https://goreportcard.com/badge/github.com/tantalor93/go-http-mock)](https://goreportcard.com/report/github.com/tantalor93/go-http-mock)
-[![Tantalor93](https://circleci.com/gh/Tantalor93/go-http-mock/tree/master.svg?style=svg)](https://circleci.com/gh/Tantalor93/go-http-mock?branch=master)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/tantalor93/go-http-mock/blob/master/LICENSE)
+[![Go Report Card](https://goreportcard.com/badge/github.com/tantalor93/httpmockie)](https://goreportcard.com/report/github.com/tantalor93/httpmockie)
+[![Tantalor93](https://circleci.com/gh/Tantalor93/httpmockie/tree/master.svg?style=svg)](https://circleci.com/gh/Tantalor93/httpmockie?branch=master)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/tantalor93/httpmockie/blob/master/LICENSE)
 
 ## httpmockie
 simple standalone high-performance mock HTTP server implemented in GO, which is able to provide mocked responses defined by 
