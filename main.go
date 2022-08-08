@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/tantalor93/go-http-mock/cmd"
+	"github.com/tantalor93/httpmockie/cmd"
 )
 
 func main() {
