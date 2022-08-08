@@ -1,8 +1,8 @@
 # Builder image
 FROM golang:1.14 AS builder
 
-RUN mkdir -p /go-http-mock
-WORKDIR /go-http-mock
+RUN mkdir -p /httpmockie
+WORKDIR /httpmockie
 
 COPY . .
 
@@ -12,7 +12,7 @@ RUN make build
 FROM alpine:3.9
 
 RUN apk --no-cache add ca-certificates
-COPY --from=builder /go-http-mock/bin/go-http-mock /app/go-http-mock
+COPY --from=builder /httpmockie/bin/httpmockie /app/httpmockie
 WORKDIR /app
 
-ENTRYPOINT ["./go-http-mock"]
+ENTRYPOINT ["./httpmockie"]
