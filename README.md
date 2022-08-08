@@ -20,7 +20,7 @@ Usage:
 
 Flags:
   -d, --dir string   directory with mock specifications (default ".")
-  -h, --help         help for go-http-mock
+  -h, --help         help for httpmockie
   -p, --port int     port to run mock server on (default 8081)
 ```
 
