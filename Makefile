@@ -1,6 +1,6 @@
 export GO111MODULE := on
 
-EXECUTABLE = go-http-mock
+EXECUTABLE = httpmockie
 GOOS=$(shell go env GOOS)
 GOARCH=$(shell go env GOARCH)
 
