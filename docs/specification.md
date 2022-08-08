@@ -1,5 +1,5 @@
 # Specification structure
-Specification for `go-http-mock` is given as a JSON file described by schema:
+Specification for `httpmockie` is given as a JSON file described by schema:
 ```
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
