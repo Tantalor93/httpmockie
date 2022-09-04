@@ -6,7 +6,7 @@
 simple standalone high-performance mock HTTP server implemented in GO, which is able to provide mocked responses defined by 
 mock specifications similar to [Wiremock JSON API](https://wiremock.org/docs/stubbing/).
 
-`httpmockie` accepts endpoint specifications specified as JSON files, which are comforming JSON schema [schema](internal/mockspec/specification.json).
+`httpmockie` accepts endpoint specifications specified as JSON files (format described in [specification](docs/specification.md)) in a single directory.
 You can configure endpoint path, HTTP status, response bodies and headers. Endpoints can be also configured to respond after configurable delay.
 
 ### Installation
