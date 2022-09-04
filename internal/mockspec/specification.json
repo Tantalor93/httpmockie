@@ -14,18 +14,22 @@
     "jsonBody": {
       "type": "object"
     },
-    "base64Body":{
+    "base64Body": {
       "type": "string"
     },
     "headers": {
-      "type": "object" 
+      "type": "object"
     },
-    "delay":{
-     "type": "object",
+    "delay": {
+      "type": "object",
       "properties": {
-    	"duration": { "type": "number" },
-    	"deviationMs": { "type": "number" }
-  	  }
+        "durationMs": {
+          "type": "number"
+        },
+        "deviationMs": {
+          "type": "number"
+        }
+      }
     }
   },
   "required": [
