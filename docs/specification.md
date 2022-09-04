@@ -7,9 +7,9 @@ single JSON endpoint specification must contain fields:
 
 additionally the endpoint can be further configured using these fields:
 * `status` = default is HTTP status OK (200)
-* `body` = HTTP response body in text format
-* `jsonBody` = HTTP response body in JSON format
-* `base64Body` = HTTP response body encoded in Base64 (useful for returning arbitrary non-textual data)
+* `body` = HTTP response body in text format (note that only one of the `body`, `jsonBody`, `base64Body` can be used in a single endpoint JSON specification)
+* `jsonBody` = HTTP response body in JSON format (note that only one of the `body`, `jsonBody`, `base64Body` can be used in a single endpoint JSON specification)
+* `base64Body` = HTTP response body encoded in Base64 (useful for returning arbitrary non-textual data, note that only one of the `body`, `jsonBody`, `base64Body` can be used in a single endpoint JSON specification)
 * `headers` = HTTP headers of response
 * `delay` = configures delay between responding to client request (useful for setting up advanced scenarios)
   * `durationMs` = static delay in milliseconds

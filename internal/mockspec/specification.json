@@ -24,15 +24,41 @@
       "type": "object",
       "properties": {
         "durationMs": {
-          "type": "number"
+          "type": "number",
+          "minimum": 0,
+          "exclusiveMinimum": true
         },
         "deviationMs": {
-          "type": "number"
+          "type": "number",
+          "minimum": 0,
+          "exclusiveMinimum": true
         }
-      }
+      },
+      "required": [
+        "durationMs"
+      ],
+      "additionalProperties": false
     }
   },
   "required": [
     "path"
+  ],
+  "additionalProperties": false,
+  "oneOf": [
+    {
+      "required": [
+        "body"
+      ]
+    },
+    {
+      "required": [
+        "jsonBody"
+      ]
+    },
+    {
+      "required": [
+        "base64Body"
+      ]
+    }
   ]
 }
