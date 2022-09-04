@@ -8,6 +8,10 @@
       "application/json"
     ]
   },
-  "path": "/example.json",
-  "status": 200
+  "path": "/example-delayed.json",
+  "status": 200,
+  "delay": {
+    "durationMs": 5000,
+    "deviationMs": 4000
+  }
 }

@@ -1,7 +1,7 @@
 # Examples
 `httpmockie` is a simple CLI tool for fast setup of mock HTTP servers
 
-For running the tool you have to specify mock specifications (format described in [specification section](specification.md))
+For running the tool you have to specify mock specifications (format described as JSON schema in [schema](../internal/mockspec/specification.json))
 and point the tool to a directory containing those specs (`--dir` flag). `httpmockie` will then expose endpoints on configurable
 port (flag `--port`)
 

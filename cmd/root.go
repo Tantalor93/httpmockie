@@ -3,8 +3,10 @@ package cmd
 import (
 	"encoding/json"
 	"fmt"
+	"math/rand"
 	"net/http"
 	"strconv"
+	"time"
 
 	"github.com/gorilla/mux"
 	"github.com/spf13/cobra"
@@ -26,6 +28,10 @@ var (
 	dir  *string
 )
 
+func init() {
+	rand.Seed(time.Now().UnixNano())
+}
+
 // RootCmd root of command.
 var RootCmd = cobra.Command{
 	Use: "httpmockie",
@@ -36,7 +42,6 @@ var RootCmd = cobra.Command{
 		}
 
 		for _, spec := range specs {
-
 			fmt.Printf("Registering handler for path '%s'\n", spec.Path)
 			createHandler(spec)
 		}
@@ -61,6 +66,15 @@ func init() {
 
 func createHandler(mock mockspec.MockSpecification) *mux.Route {
 	return router.HandleFunc(mock.Path, func(writer http.ResponseWriter, request *http.Request) {
+		if mock.Delay != nil {
+			dur := mock.Delay.DurationMs
+			deviation := 0
+			if mock.Delay.DeviationMs != 0 {
+				dur -= mock.Delay.DeviationMs
+				deviation = rand.Intn(mock.Delay.DeviationMs + mock.Delay.DeviationMs)
+			}
+			time.Sleep(time.Duration(dur+deviation) * time.Millisecond)
+		}
 		if mock.Headers != nil {
 			for k, v := range mock.Headers {
 				for _, hv := range v {

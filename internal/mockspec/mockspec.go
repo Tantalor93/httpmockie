@@ -1,15 +1,20 @@
 package mockspec
 
 import (
+	_ "embed"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"os"
 	"path/filepath"
 
 	"github.com/pkg/errors"
+	"github.com/xeipuuv/gojsonschema"
 )
+
+//go:embed specification.json
+var jsonSchema string
 
 // MockSpecification specification of mock.
 type MockSpecification struct {
@@ -19,6 +24,13 @@ type MockSpecification struct {
 	Path       string                 `json:"path"`
 	Status     int                    `json:"status"`
 	Headers    http.Header            `json:"headers"`
+	Delay      *Delay                 `json:"delay"`
+}
+
+// Delay specifies delay of single endpoint.
+type Delay struct {
+	DurationMs  int `json:"durationMs"`
+	DeviationMs int `json:"deviationMs"`
 }
 
 // CollectFromDirectory collect specifications from the specified directory.
@@ -41,24 +53,29 @@ func createDirWalker(specCollector *[]MockSpecification) filepath.WalkFunc {
 			if err != nil {
 				return fmt.Errorf("[%s] error opening file '%w'", path, err)
 			}
-			read, err := ioutil.ReadAll(file)
+			read, err := io.ReadAll(file)
 			if err != nil {
 				return fmt.Errorf("[%s] error reading file'%w'", path, err)
+			}
+
+			schemaLoader := gojsonschema.NewStringLoader(jsonSchema)
+			documentLoader := gojsonschema.NewStringLoader(string(read))
+			res, err := gojsonschema.Validate(schemaLoader, documentLoader)
+			if err != nil {
+				return fmt.Errorf("[%s] error while validating schema, '%w'", path, err)
+			}
+			if !res.Valid() {
+				for _, v := range res.Errors() {
+					return fmt.Errorf("[%s] %s", path, v.String())
+				}
 			}
 
 			var spec MockSpecification
 			err = json.Unmarshal(read, &spec)
 			if err != nil {
-				return fmt.Errorf("[%s] error unmarshalling specification '%w'", path, err)
+				return fmt.Errorf("[%s] error while unmarshalling JSON '%w'", path, err)
 			}
-			if (spec.JSONBody != nil && spec.Body != nil) ||
-				(spec.Body != nil && spec.Base64Body != nil) ||
-				(spec.JSONBody != nil && spec.Base64Body != nil) {
-				return fmt.Errorf("[%s] only one of the jsonBody, body, base64Body can be specified", path)
-			}
-			if len(spec.Path) == 0 {
-				return fmt.Errorf("[%s] path is required argument", path)
-			}
+
 			*specCollector = append(*specCollector, spec)
 			return nil
 		}
