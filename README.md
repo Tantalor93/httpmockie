@@ -27,5 +27,11 @@ Flags:
   -p, --port int     port to run mock server on (default 8081)
 ```
 
+### Docker image
+you can also run `httpmockie` as Docker container, for example:
+```
+docker run -p 8081:8081 -v $(pwd)/docs/examples/:/specs tantalor93/httpmockie:v0.0.1 --dir /specs
+```
+
 ### Examples
 See [example](docs/example.md) for examples of usage and mock specification description.
