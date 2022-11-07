@@ -1,6 +1,6 @@
 # syntax = docker/dockerfile:1.2
 # Builder image
-FROM golang:1.18-alpine3.15 as builder
+FROM golang:1.19.3-alpine3.15 as builder
 
 RUN apk add --update build-base libmnl-dev
 
