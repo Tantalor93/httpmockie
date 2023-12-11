@@ -16,7 +16,7 @@ RUN --mount=type=cache,target=/go/pkg/mod \
     make build
 
 # Runtime image
-FROM alpine:3.15
+FROM alpine:3.19
 
 RUN apk --no-cache add ca-certificates
 COPY --from=builder /httpmockie/bin/httpmockie /app/httpmockie
